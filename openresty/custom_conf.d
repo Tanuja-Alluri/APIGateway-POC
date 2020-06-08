@@ -35,7 +35,7 @@ http {
                 local opts = {
                   ssl_verify = "no",
                   discovery = {
-                    jwks_uri = "https://dev-u37u54qh.auth0.com/.well-known/jwks.json"
+                    jwks_uri = "https://domain-name/.well-known/jwks.json"
                   }
                 }
                 local res, err = require("resty.openidc").bearer_jwt_verify(opts)
@@ -46,7 +46,7 @@ http {
                   ngx.exit(ngx.HTTP_FORBIDDEN)
                 end
 
-                if res.azp ~= "I0Ek6u1AK51jksm9sqWk0auJnR9fBIUM" then
+                if res.azp ~= "client-id" then
                   ngx.exit(ngx.HTTP_FORBIDDEN)
                 end
             ';
